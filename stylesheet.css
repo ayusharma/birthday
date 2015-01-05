@@ -8,7 +8,9 @@ body {
 	transition:background-color linear 5s;
 	overflow-x:hidden;
 }
-
+.container {
+	display: none;
+}
 .peach {
 	background-color: #FFDAB9;
 	
@@ -1297,3 +1299,12 @@ audio {
         color: #fff;
         background-color: #466baf;
     }
+
+
+
+    /*controlling tablet width*/
+    /*@media only screen and (max-width: 720px){
+    	.container {
+    		-webkit-transform: scale(0.9);
+    	}
+    }*/
