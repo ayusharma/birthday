@@ -1,0 +1,271 @@
+
+
+//////////////////////////////////////////// var
+
+@D:300px; // Control diameter
+
+///////////////////////////////////////////
+
+
+
+/* ============================================== POSITION
+*/
+
+.cake{
+  position:absolute;
+  display:none;
+ // top:30%; 
+  left:50%;
+  margin-left:-(@D/2);
+  width:@D; height:@D;
+}
+
+/* ============================================== BASE
+*/
+
+.cake:after{
+  background:rgba(255,255,255,1);
+  border-radius:@D;
+  content:"";
+  position:absolute;
+  bottom:0; left:0;
+  width:@D; height:@D/50;
+}
+
+.cake:before{
+  
+}
+
+/* ============================================== Candle
+*/
+
+.velas{
+  background:rgba(255,255,255,1);
+  border-radius:100%;
+  position:absolute;
+  top:50%; left:50%;
+  margin-left:-(@D/2)/20;
+  margin-top:-(@D/2)/6;
+  width:@D/20; height:@D/6;
+}
+
+.velas:after,
+.velas:before{
+  background:rgba(255,0,0,0.4);
+  content:"";
+  position:absolute;
+  width:100%; height:@D/45;
+}
+
+.velas:after{
+  top:25%; left:0;
+}
+
+.velas:before{
+  top:45%; left:0;
+}
+
+/* ============================================== Fire
+*/
+
+.fuego{
+  display:none;
+  border-radius:100%;
+  box-shadow:0 0 40px 10px rgba(248,233,209,0.2);
+  position:absolute;
+  top:-12px; left:50%;
+  margin-left:-(@D/2)/15;
+  //margin-top:-(@D/2)/10;
+  width:@D/15; height:@D/8;
+}
+
+.fuego:nth-child(1){
+  -webkit-animation:fuego 2s infinite;
+  -moz-animation:fuego 2s infinite;
+  -o-animation:fuego 2s infinite;
+  -ms-animation:fuego 2s infinite;
+  animation:fuego 2s infinite;
+
+}
+
+.fuego:nth-child(2){
+  -webkit-animation:fuego 1.5s infinite;
+   -moz-animation:fuego 1.5s infinite;
+    -o-animation:fuego 1.5s infinite;
+     -ms-animation:fuego 1.5s infinite;
+      animation:fuego 1.5s infinite;
+
+}
+
+.fuego:nth-child(3){
+  -webkit-animation:fuego 1s infinite;
+  -moz-animation:fuego 1s infinite;
+  -o-animation:fuego 1s infinite;
+  -ms-animation:fuego 1s infinite;
+  animation:fuego 1s infinite;
+}
+
+.fuego:nth-child(4){
+  -webkit-animation:fuego 0.5s infinite;
+  -moz-animation:fuego 0.5s infinite;
+  -o-animation:fuego 0.5s infinite;
+  -ms-animation:fuego 0.5s infinite;
+  animation:fuego 0.5s infinite;
+}
+
+.fuego:nth-child(5){
+  -webkit-animation:fuego 0.2s infinite;
+  -moz-animation:fuego 0.2s infinite;
+  -o-animation:fuego 0.2s infinite;
+  -ms-animation:fuego 0.2s infinite;
+  animation:fuego 0.2s infinite;
+}
+
+/* ============================================== Animation Fire
+*/
+
+@-webkit-keyframes fuego{
+  0%{
+    background:rgba(254,248,97,0.5);
+    -webkit-transform:translateY(0) scale(1);
+  }
+  50%{
+    background:rgba(255,50,0,0.1);
+    -webkit-transform:translateY(-(@D/5)) scale(0);
+  }
+  100%{
+    background:rgba(254,248,97,0.5);
+    -webkit-transform:translateY(0) scale(1);
+  }
+}
+@-moz-keyframes fuego{
+  0%{
+    background:rgba(254,248,97,0.5);
+    -moz-transform:translateY(0) scale(1);
+  }
+  50%{
+    background:rgba(255,50,0,0.1);
+    -moz-transform:translateY(-(@D/5)) scale(0);
+  }
+  100%{
+    background:rgba(254,248,97,0.5);
+    -moz-transform:translateY(0) scale(1);
+  }
+}
+@-o-keyframes fuego{
+  0%{
+    background:rgba(254,248,97,0.5);
+    -o-transform:translateY(0) scale(1);
+  }
+  50%{
+    background:rgba(255,50,0,0.1);
+    -o-transform:translateY(-(@D/5)) scale(0);
+  }
+  100%{
+    background:rgba(254,248,97,0.5);
+    -o-transform:translateY(0) scale(1);
+  }
+}
+@-ms-keyframes fuego{
+  0%{
+    background:rgba(254,248,97,0.5);
+    -ms-transform:translateY(0) scale(1);
+  }
+  50%{
+    background:rgba(255,50,0,0.1);
+    -ms-transform:translateY(-(@D/5)) scale(0);
+  }
+  100%{
+    background:rgba(254,248,97,0.5);
+    -ms-transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes fuego{
+  0%{
+    background:rgba(254,248,97,0.5);
+    transform:translateY(0) scale(1);
+  }
+  50%{
+    background:rgba(255,50,0,0.1);
+    transform:translateY(-(@D/5)) scale(0);
+  }
+  100%{
+    background:rgba(254,248,97,0.5);
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* ============================================== Frosting
+*/
+
+.cobertura{
+  background:rgba(236,231,227,1);
+  border-radius:@D/2;
+  position:absolute;
+  top:60%; left:50%;
+  margin-left:-(@D/2)/1.8;
+  margin-top:-(@D/2)/10;
+  width:@D/1.8; height:@D/8;
+  z-index:10;
+}
+
+.cobertura:after,
+.cobertura:before{
+  background:rgba(236,231,227,1);
+  border-radius:@D;
+  content:"";
+  position:absolute;
+  width:@D/20; height:@D/10;
+}
+
+.cobertura:after{
+  top:@D/15; right:@D/7;
+}
+
+.cobertura:before{
+  top:@D/10; right:@D/11;
+}
+
+/* ============================================== BIZCOCHO
+*/
+
+.bizcocho{
+  background:rgba(109,56,38,1);
+  position:absolute;
+  bottom:0; left:50%;
+  margin-left:-(@D/2)/2;
+  width:@D/2; height:@D/3;
+}
+
+.bizcocho:after,
+.bizcocho:before{
+  background:rgba(236,231,227,0.6);
+  content:"";
+  position:absolute;
+  width:100%; height:@D/20;
+}
+
+.bizcocho:after{
+  top:30%; left:0;
+}
+
+.bizcocho:before{
+  top:60%; left:0;
+}
+
+/* ============================================== TEXT
+*/
+
+h1,
+p{
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-style:italic;
+  text-align:center;
+  width:100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
