@@ -13,7 +13,7 @@ body {
 }
 .peach {
 	background-color: #FFDAB9;
-	
+
 }
 .peach-after {
 	-webkit-animation:peach_alive linear 8s infinite;
