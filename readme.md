@@ -39,7 +39,7 @@ var config = {
 <img src="./assets/birthday-demo2.gif"/>
 
 ## 知乎使用教程
-暂无
+(https://zhuanlan.zhihu.com/p/85899661)[https://zhuanlan.zhihu.com/p/85899661]
 
 ## 结尾
 喜欢的话关注一下[霸都丶傲天](https://github.com/ajlovechina)呗~  \
