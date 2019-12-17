@@ -1279,6 +1279,15 @@ audio {
 	text-shadow: 2px 2px 2px #FFF;
 	display: none;
 	font-weight: bold;
+	text-align: center;
+}
+.message p img{
+	display: block;
+	max-width: 80%;
+	max-height: 200px;
+	margin: 5px auto;
+	border-radius: 50%;
+	box-shadow: #aaa 0 0 4px;
 }
 
 .btn-primary {
