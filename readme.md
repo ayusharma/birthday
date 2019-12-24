@@ -73,7 +73,7 @@ var config = {
 > 
 > 回答：将你自己的mp3音乐文件覆盖`assets`目录下面的`hbd.mp3`, 記住覆蓋后名字要完全一樣哦！
 
-## 链接
+
 ## 链接
 * [第一期:爱情树 🌴将相爱的时刻永远珍藏 （微信，QQ可完美查看）](https://github.com/AJLoveChina/LoveTree)
 * [第二期: :cake:改改数据,为心爱的人做一个超具创意的网页生日祝福吧~ (生日快乐)](https://github.com/AJLoveChina/birthday)
