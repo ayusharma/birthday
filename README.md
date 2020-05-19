@@ -15,13 +15,13 @@ cd Birthday
 
 && 
 
-If you use *Mac/Linux* use
+If yous OS is *Mac/Linux* use
 
 ```
 python -m SimpleHTTPServer --port  8081
 ```
 
-If you use *Windows* use 
+If yous OS is *Windows* use 
 
 ```
 python -m http.server 8081
