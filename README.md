@@ -2,7 +2,9 @@ Happy Birthday
 
 A Happy Birthday animation design in CSS3, HTML5.
 
-URL: http://ayusharma.github.io/birthday/
+URL : https://hungry-visvesvaraya-19d461.netlify.app/
+
+Original Project URL: http://ayusharma.github.io/birthday/
 
 Technology Used: HTML5 CSS3 jQuery  GNU/Linux Digital Ocean as VPS GIMP
 
