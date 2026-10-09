@@ -1,198 +1,555 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>    <html class="ie lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>    <html class="ie lt-ie9"> <![endif]-->
-<!--[if gt IE 8]> <html> <![endif]-->
-<!--[if !IE]><!--><html lang="en"><!-- <![endif]-->
+<html lang="en">
 <head>
-	<title>Happy Birthday</title>
-	<meta charset="UTF-8" />
-	<meta name="description" content="Happy Birthday Xola">
-	<meta name="robots" content="index, follow" />
-	<link rel="author" href="https://plus.google.com/u/1/+AyushSharma1/" /> 
-    <meta name="keywords" content="Birthday, Happy">
-    <!-- Strat of Facebook Meta -->
-    <meta property="og:type" content="E-Greeting" />
-    <meta property="og:image" content="favicon.ico" />
-    <meta property="og:description" content="Wish you a very Happy Birthday">
-    <!-- End of Facebook Meta Tags -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link rel="stylesheet" type="text/css" href="loading.css">
-	<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
-	<!-- <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'> -->
-	<link rel="stylesheet/less" href="cake.less">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <title>Happy Birthday! ✨ A Magical 3D Celebration</title>
+  <meta name="description" content="Personalized magical birthday experience with interactive 3D cake, dynamic balloons, confetti fireworks and heartfelt wishes.">
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' blob: data: https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self';">
+  
+  <!-- Premium Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Modern 3D Progressive Stylesheet -->
+  <link rel="stylesheet" href="stylesheet.css?v=9.6">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-
 <body>
-	<div class="loading"></div>
-	<audio class="song" controls loop>
-        <source src="hbd.mp3"></source>
-	   Your browser isn't invited for super fun audio time.
-    </audio>
-    <div class="balloons text-center" id="b1">
-    	<h2 style="color:#F2B300;">H</h2>
+
+  <!-- Dynamic Cosmic Particle Starfield & Glowing Aurora -->
+  <div class="aurora-layer">
+    <div class="ambient-orb orb-pink"></div>
+    <div class="ambient-orb orb-purple"></div>
+  </div>
+
+  <canvas id="potter-canvas" class="potter-canvas"></canvas>
+  <canvas id="cosmos-canvas" class="cosmos-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Audio Soundtrack -->
+  <audio id="birthday-song" loop preload="auto">
+    <source src="hbd.mp3" type="audio/mpeg">
+    Your browser does not support audio element.
+  </audio>
+  <audio id="hp-birthday-song" loop preload="none"></audio>
+  <audio id="custom-song" loop preload="auto"></audio>
+
+  <!-- Frosted Glass Navigation Header -->
+  <header class="app-header">
+    <a href="index.html" class="brand" title="Celebration Home">
+      <div class="brand-gem">✨</div>
+      <span class="brand-text">Birthday Celebration</span>
+    </a>
+    
+    <div class="header-right">
+      <!-- Music Play / Pause -->
+      <button class="btn btn-glass" id="btn-header-music" title="Toggle Background Music">
+        <div class="audio-meter meter-paused" id="audio-visualizer-box">
+          <div class="meter-bar"></div>
+          <div class="meter-bar"></div>
+          <div class="meter-bar"></div>
+          <div class="meter-bar"></div>
+        </div>
+        <span id="music-btn-label">Play Music</span>
+        <span class="music-dropdown-arrow" id="music-dropdown-arrow">▾</span>
+      </button>
+      <!-- Music Selection Dropdown -->
+      <div class="music-dropdown-panel" id="music-dropdown-panel">
+        <div class="music-dropdown-title">🎵 Choose Music</div>
+        <label class="music-option active" id="music-opt-default" for="radio-music-default">
+          <input type="radio" id="radio-music-default" name="music-source" value="default" aria-label="Default Happy Birthday song" checked style="display:none">
+          <span class="music-opt-icon">🎂</span>
+          <span>Happy Birthday (Default)</span>
+        </label>
+        <label class="music-option" id="music-opt-hp" for="radio-music-hp">
+          <input type="radio" id="radio-music-hp" name="music-source" value="hp" aria-label="Hedwig's Theme (Harry Potter)" style="display:none">
+          <span class="music-opt-icon">⚡</span>
+          <span>Hedwig's Theme (Harry Potter)</span>
+        </label>
+        <label class="music-option" id="music-opt-custom" for="radio-music-custom">
+          <input type="radio" id="radio-music-custom" name="music-source" value="custom" aria-label="Upload custom song" style="display:none">
+          <span class="music-opt-icon">➕</span>
+          <span>Upload Your Song (1 Only)</span>
+        </label>
+        <label for="custom-song-upload" style="display:none">Upload Custom Audio File</label>
+        <input type="file" id="custom-song-upload" accept="audio/mpeg,audio/mp3,audio/wav,audio/ogg,audio/aac,audio/m4a" aria-label="Upload custom audio file" style="display:none">
+        <div class="music-custom-status" id="music-custom-status" style="display:none">
+          🎵 <span id="custom-song-name">No file selected</span>
+        </div>
+      </div>
+
+      <!-- 3D Background Theme Switcher -->
+      <button class="btn btn-gold btn-theme-toggle" id="btn-theme-toggle" title="Switch 3D Background Animation Theme">
+        <span id="theme-toggle-icon">⚡</span>
+        <span id="theme-toggle-label">Hogwarts 3D</span>
+      </button>
+
+      <!-- Personalize / Change Details -->
+      <button class="btn btn-primary" id="btn-header-personalize">
+        <span>✏️ Personalize</span>
+      </button>
+
+      <!-- Quick Copy Share Link -->
+      <button class="btn btn-glass btn-icon" id="btn-header-share" title="Copy Celebration Link">
+        <span>🔗</span>
+      </button>
     </div>
-    <div class="balloons text-center" id="b2">
-    	<h2 style="color:#0719D4;">B</h2>
-    </div>
-	<div class="balloons text-center" id="b3">
-    	<h2 style="color:#D14D39;">D</h2>
-    </div>
-	<div class="balloons text-center" id="b4">
-    	<h2 style="color:#8FAD00;">X</h2>
-    </div>
-	<div class="balloons text-center" id="b5">
-    	<h2 style="color:#8377E4;">O</h2>
-    </div>
-    <div class="balloons text-center" id="b6">
-    	<h2 style="color:#99C96A;">L</h2>
-    </div>
-    <div class="balloons text-center" id="b7">
-    	<h2 style="color:#20CFB4;">A</h2>
+  </header>
+
+  <!-- Ambient Multi-Structure Fairy & Festoon Lights System -->
+  <div class="lights-system-container lights-glow-on" id="lights-system-container">
+    <!-- 1. Arched Scallop Canopy Drapes -->
+    <svg class="festoon-wire-canopy" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path class="festoon-wire-path" d="M -10,10 Q 240,65 480,15 Q 720,70 960,15 Q 1200,65 1450,10" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
+      <path class="festoon-wire-path-shadow" d="M -10,12 Q 240,67 480,17 Q 720,72 960,17 Q 1200,67 1450,12" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="1"/>
+    </svg>
+
+    <!-- 2. Main Top Festoon Garland with Diverse Structures (Globes, Teardrops, Stars, Lanterns) -->
+    <div class="fairy-lights-string" id="fairy-lights-string">
+      <div class="fairy-bulb-node"><div class="fairy-socket"></div><div class="fairy-glass shape-teardrop bulb-gold" title="Warm Gold"></div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-globe bulb-rose" title="Rose Pink"></div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket"></div><div class="fairy-glass shape-star bulb-gold" title="Starlight">★</div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-lantern bulb-cyan" title="Mint Cyan"></div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket"></div><div class="fairy-glass shape-globe bulb-blue" title="Sapphire"></div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-teardrop bulb-pink" title="Ruby"></div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket"></div><div class="fairy-glass shape-star bulb-cyan" title="Cyan Star">★</div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-lantern bulb-orange" title="Sunburst"></div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket"></div><div class="fairy-glass shape-globe bulb-violet" title="Amethyst"></div></div>
+      <div class="fairy-bulb-node"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-teardrop bulb-gold" title="Champagne"></div></div>
     </div>
 
-    <img src="Balloon-Border.png" width="100%" class="balloon-border">
- 
+    <!-- 3. Left Flank Cascading Vertical Light Strand -->
+    <div class="fairy-lights-vertical lights-left" id="fairy-lights-left">
+      <div class="vertical-wire"></div>
+      <div class="v-bulb-item v-pos-1"><div class="fairy-socket"></div><div class="fairy-glass shape-globe bulb-gold"></div></div>
+      <div class="v-bulb-item v-pos-2"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-teardrop bulb-rose"></div></div>
+      <div class="v-bulb-item v-pos-3"><div class="fairy-socket"></div><div class="fairy-glass shape-star bulb-cyan">★</div></div>
+      <div class="v-bulb-item v-pos-4"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-lantern bulb-violet"></div></div>
+      <div class="v-bulb-item v-pos-5"><div class="fairy-socket"></div><div class="fairy-glass shape-globe bulb-orange"></div></div>
+      <div class="v-bulb-item v-pos-6"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-teardrop bulb-pink"></div></div>
+    </div>
 
-	<div class="container">
-		
-		<div class="row">
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_yellow"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_red"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_blue"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_green"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_pink"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_orange"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<img src="banner.png" class="bannar">
-			</div>
-		</div>
-		<div class="row cake-cover">
-			<div class="col-md-12 texr-center">
-				<div class="cake">
-				  <div class="velas">
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				  </div>
-				  <div class="cobertura"></div>
-				  <div class="bizcocho"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row message">
-			<div class="col-md-12">
-				<p>Today is...</p>
-				<p>as beautiful as other days</p>
-				<p>but you realize</p>
-				<p>another year has gone</p>
-				<p>in a blink of the eyes</p>
-				<p><strong>however</strong></p>
-				<p>Do you know..?</p>
-				<p>today is just special</p>
-				<p>so special to you</p>
-				<p>that's why</p>
-				<p>Let's make it...</p>
-				<p>the best celebration ever</p>
-				<p>and let me share...</p>
-				<p>a piece of happiness to you</p>
-				<p>I made all this...</p>
-				<p>as a birthday present to you</p>
-				<p>thanks for being there</p>
-				<p>thanks for the friendship we made</p>
-				<p>thanks for everything</p>
-				<p>I wish you all the best</p>
-				<p>May your life be at ease</p>
-				<p>May all your wishes come true</p>
-				<p>Remember</p>
-				<p>your ambitions</p>
-				<p>you live as a free bird...</p>
-				<p>flying in the blue sky</p>
-				<p>Now things are different...</p>
-				<p>real story of your life</p>
-				<p>is just about to begin</p>
-				<p>indeed..</p>
-				<p>but...</p>
-				<p>don't worry</p>
-				<p>because...</p>
-				<p>God has your back</p>
-				<p>and</p>
-				<p>this year will be better</p>
-				<p>and I hope</p>
-				<p>you'll find...</p>
-				<p>happiness along the way</p>
-				<p>keep your spirit up</p>
-				<p>enjoy every single moment...</p>
-				<p>that you experience today</p>
-				<p>fill it with your most beautiful smile</p>
-				<p>and make it the best memory..</p>
-				<p>lastly...</p>
-				<p>I'd like to wish you one more time</p>
-				<p>a very happy birthday Xola Mathembisa</p>
-			</div>
-		</div>
-		<div class="navbar navbar-fixed-bottom">
-			<div class="row">
-				<div class="col-md-6 text-center col-md-offset-3">
-					<button class="btn btn-primary" id="turn_on">Turn On Lights</button>
-					<button class="btn btn-primary" id="play">Play Music</button>
-					<button class="btn btn-primary" id="bannar_coming">Let's Decorate</button>
-					<button class="btn btn-primary" id="balloons_flying">Fly With Balloons</button>
-					<button class="btn btn-primary" id="cake_fadein">Most Delicious Cake Ever</button>
-					<button class="btn btn-primary" id="light_candle"> Light Candle</button>
-					<button class="btn btn-primary" id="wish_message">Happy Birthday</button>
-					<button class="btn btn-primary" id="story">A mesage for you</button>
-					<!-- <button class="btn btn-primary" id="cake_cut">Lrt's Cut the Cake</button> -->
-				</div>
-			</div>
-			<!-- <div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div> -->
-		</div>
+    <!-- 4. Right Flank Cascading Vertical Light Strand -->
+    <div class="fairy-lights-vertical lights-right" id="fairy-lights-right">
+      <div class="vertical-wire"></div>
+      <div class="v-bulb-item v-pos-1"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-teardrop bulb-pink"></div></div>
+      <div class="v-bulb-item v-pos-2"><div class="fairy-socket"></div><div class="fairy-glass shape-globe bulb-cyan"></div></div>
+      <div class="v-bulb-item v-pos-3"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-lantern bulb-gold"></div></div>
+      <div class="v-bulb-item v-pos-4"><div class="fairy-socket"></div><div class="fairy-glass shape-star bulb-rose">★</div></div>
+      <div class="v-bulb-item v-pos-5"><div class="fairy-socket socket-brass"></div><div class="fairy-glass shape-teardrop bulb-violet"></div></div>
+      <div class="v-bulb-item v-pos-6"><div class="fairy-socket"></div><div class="fairy-glass shape-globe bulb-gold"></div></div>
+    </div>
+  </div>
 
+  <!-- Potter Floating Magic Lanterns (visible only in Harry Potter theme) -->
+  <div class="potter-floating-lanterns" id="potter-floating-lanterns">
+    <div class="magic-lantern lantern-1"></div>
+    <div class="magic-lantern lantern-2 lantern-amber"></div>
+    <div class="magic-lantern lantern-3 lantern-warm"></div>
+    <div class="magic-lantern lantern-4"></div>
+    <div class="magic-lantern lantern-5 lantern-amber"></div>
+    <div class="magic-lantern lantern-6 lantern-warm"></div>
+    <div class="magic-lantern lantern-7"></div>
+    <div class="magic-lantern lantern-8 lantern-amber"></div>
+  </div>
 
-	</div>
+  <!-- Breadcrumb Stepper Navigation -->
+  <nav class="stepper-nav" aria-label="Celebration Stages">
+    <button class="step-indicator active" data-step="1">1. Welcome ✨</button>
+    <button class="step-indicator" data-step="2">2. Balloons 🎈</button>
+    <button class="step-indicator" data-step="3">3. Cake 🎂</button>
+    <button class="step-indicator" data-step="4">4. Gift 🎁</button>
+    <button class="step-indicator" data-step="5">5. Message 💌</button>
+  </nav>
+
+  <!-- Main Viewport: Progressive Focused Scenes -->
+  <main class="stage-viewport" id="stage-viewport">
+
+    <!-- ====================================================================
+         SCENE 1: THE NAME REVEAL & GREETING
+         ==================================================================== -->
+    <section class="stage-scene scene-active" id="stage-scene-1">
+      <p class="script-tag">Wishing A Magical Happy Birthday</p>
+      <h1 class="monumental-name" id="monumental-name">Amaan! ✨</h1>
+      
+      <div class="milestone-strip" id="milestone-strip">
+        <!-- Age & Zodiac pills injected dynamically -->
+      </div>
+
+      <div class="stage-nav-controls">
+        <button class="btn btn-gold btn-nav-next" data-next-stage="2">
+          <span>Next: See Your Balloons 🎈 ›</span>
+          <span class="btn-owl-badge" title="Hedwig delivers next stage">🦉</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 2: 3D DYNAMIC NAME BALLOONS
+         ==================================================================== -->
+    <section class="stage-scene" id="stage-scene-2">
+      <p class="script-tag">Floating In The Sky</p>
+      <h2 style="font-family: var(--font-display); font-size: 2.4rem; margin-bottom: 8px;">Your Celebration Balloons</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Tap or click any balloon to pop it with sparkles!</p>
+
+      <div class="balloons-box">
+        <div class="balloons-constellation" id="balloons-constellation">
+          <!-- Dynamic balloons injected based on recipient name -->
+        </div>
+      </div>
+
+      <div class="stage-nav-controls">
+        <button class="btn btn-glass btn-nav-prev" data-prev-stage="1">‹ Previous</button>
+        <button class="btn btn-gold btn-nav-next" data-next-stage="3">
+          <span>Next: Birthday Cake 🎂 ›</span>
+          <span class="btn-owl-badge" title="Hedwig delivers next stage">🦉</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 3: REALISTIC 3D BIRTHDAY CAKE & BLOWABLE CANDLE
+         ==================================================================== -->
+    <section class="stage-scene" id="stage-scene-3">
+      <p class="script-tag">Make A Special Wish</p>
+      <h2 style="font-family: var(--font-display); font-size: 2.4rem; margin-bottom: 6px;">Delicious Birthday Cake</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Click the candle or tap below to blow out the flame!</p>
+
+      <div class="cake-3d-stage">
+        <div class="stand-stem"></div>
+        <div class="stand-plate"></div>
+        <div class="cake-tier-base"><div class="tier-drip-base"></div></div>
+        <div class="cake-piping-base">
+          <div class="cream-swirl"></div>
+          <div class="cream-swirl"></div>
+          <div class="cream-swirl"></div>
+          <div class="cream-swirl"></div>
+          <div class="cream-swirl"></div>
+          <div class="cream-swirl"></div>
+          <div class="cream-swirl"></div>
+          <div class="cream-swirl"></div>
+        </div>
+        <div class="cake-tier-top"><div class="tier-drip-top"></div></div>
+        
+        <div class="strawberry-cluster">
+          <div class="gourmet-strawberry"></div>
+          <div class="gourmet-strawberry"></div>
+          <div class="gourmet-strawberry"></div>
+        </div>
+
+        <div class="candle-assembly" id="candle-assembly" title="Click candle to blow out the flame!">
+          <div class="candle-flame-real" id="candle-flame-real"></div>
+          <div class="realistic-smoke" id="realistic-smoke"></div>
+          <div class="candle-wick"></div>
+          <div class="candle-shaft"></div>
+        </div>
+      </div>
+
+      <!-- Microphone Blow Indicator & Controls -->
+      <div class="mic-status-pill" id="mic-status-pill" title="Click to enable microphone blow">
+        <span>🎙️ Blow into your mic or click below</span>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 6px; flex-wrap: wrap; justify-content: center;">
+        <button class="btn btn-primary" id="btn-blow-candle">
+          💨 Blow Candle & Make A Wish!
+        </button>
+        <button class="btn btn-glass" id="btn-enable-mic">
+          🎙️ Blow with Microphone
+        </button>
+      </div>
+
+      <div class="stage-nav-controls">
+        <button class="btn btn-glass btn-nav-prev" data-prev-stage="2">‹ Previous</button>
+        <button class="btn btn-gold btn-nav-next" data-next-stage="4">
+          <span>Next: Unwrap Your Gifts 🎁 ›</span>
+          <span class="btn-owl-badge" title="Hedwig delivers next stage">🦉</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 4: 3 DISTINCT 3D SURPRISE GIFT BOXES & MEMORIES
+         ==================================================================== -->
+    <section class="stage-scene" id="stage-scene-4">
+      <p class="script-tag">Wrapped With Love</p>
+      <h2 style="font-family: var(--font-display); font-size: 2.4rem; margin-bottom: 6px;">Your Surprise Gift Boxes</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Click on each box to reveal its unique surprise!</p>
+
+      <div class="gift-boxes-trio">
+        <!-- Box 1: Gryffindor House Box (Scarlet & Gold Blessing) -->
+        <div class="gift-box-item" id="gift-item-1">
+          <div class="gift-box-title">🦁 Gryffindor Blessing Box</div>
+          <div class="gift-3d-box box-gryffindor box-amethyst" id="gift-box-1" title="Click to open Gryffindor Blessing Box!">
+            <div class="gift-lid-3d">
+              <div class="gift-ribbon-bow"></div>
+              <div class="house-crest-badge crest-gryffindor" title="Gryffindor Lion Crest">🦁</div>
+            </div>
+            <div class="gift-body-3d">
+              <div class="gift-ribbon-cross"></div>
+              <div class="gift-house-symbol">🦁</div>
+            </div>
+          </div>
+          <div class="gift-pop-card" id="gift-pop-card-1">
+            <p style="font-size: 1.1rem; font-weight: 700; color: #ffd166; margin-bottom: 4px;">🎉 Endless Courage & Joy</p>
+            <p style="font-size: 0.88rem; color: #e2e8f0; line-height: 1.5;">May the brave heart of Gryffindor guide your year with pure peace, radiant health, and glorious achievements! 🌟</p>
+          </div>
+        </div>
+
+        <!-- Box 2: Slytherin House Box (Emerald & Silver Memory Box) -->
+        <div class="gift-box-item" id="gift-item-2">
+          <div class="gift-box-title">🐍 Slytherin Memory Box</div>
+          <div class="gift-3d-box box-slytherin box-ruby" id="gift-box-2" title="Click to open Slytherin Memory Box!">
+            <div class="gift-lid-3d">
+              <div class="gift-ribbon-bow"></div>
+              <div class="house-crest-badge crest-slytherin" title="Slytherin Serpent Crest">🐍</div>
+            </div>
+            <div class="gift-body-3d">
+              <div class="gift-ribbon-cross"></div>
+              <div class="gift-house-symbol">🐍</div>
+            </div>
+          </div>
+          <div class="gift-pop-card" id="gift-pop-card-2" style="background: transparent; border: none; padding: 0;">
+            <div class="polaroid-stack-container" id="polaroid-stack-container" title="Click to flip to next photo!">
+              <div class="polaroid-pin"></div>
+              <div class="polaroid-deck" id="polaroid-deck">
+                <!-- Stacked 3D Polaroid cards injected dynamically -->
+              </div>
+              <div class="polaroid-stack-hint" id="polaroid-stack-hint">📸 Photo 1 of 4 • Click to flip!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box 3: Hufflepuff House Box (Canary Gold & Obsidian Secret Wish) -->
+        <div class="gift-box-item" id="gift-item-3">
+          <div class="gift-box-title">🦡 Hufflepuff Secret Wish</div>
+          <div class="gift-3d-box box-hufflepuff box-emerald" id="gift-box-3" title="Click to open Hufflepuff Secret Wish!">
+            <div class="gift-lid-3d">
+              <div class="gift-ribbon-bow"></div>
+              <div class="house-crest-badge crest-hufflepuff" title="Hufflepuff Badger Crest">🦡</div>
+            </div>
+            <div class="gift-body-3d">
+              <div class="gift-ribbon-cross"></div>
+              <div class="gift-house-symbol">🦡</div>
+            </div>
+          </div>
+          <div class="gift-pop-card" id="gift-pop-card-3">
+            <p style="font-size: 1.1rem; font-weight: 700; color: #fde047; margin-bottom: 4px;">🌟 Loyalty & Golden Destiny</p>
+            <p style="font-size: 0.88rem; color: #e2e8f0; line-height: 1.5;">True-hearted and patient, may your loyal spirit harvest abundant happiness, prosperity, and sweetest dreams! 🌈💫</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 10px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-primary" id="btn-open-all-gifts">
+          🎁 Open All Surprise Gifts
+        </button>
+        <button class="btn btn-glass" id="btn-reset-all-gifts">
+          ↺ Re-wrap / Close Boxes
+        </button>
+      </div>
+
+      <div class="stage-nav-controls">
+        <button class="btn btn-glass btn-nav-prev" data-prev-stage="3">‹ Previous</button>
+        <button class="btn btn-gold btn-nav-next" data-next-stage="5">
+          <span>Next: Read Your Message 💌 ›</span>
+          <span class="btn-owl-badge" title="Hedwig delivers next stage">🦉</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 5: HEARTFELT MESSAGE & STORY FLOW (LINE BY LINE)
+         ==================================================================== -->
+    <section class="stage-scene" id="stage-scene-5">
+      <p class="script-tag">From The Heart</p>
+      <h2 style="font-family: var(--font-display); font-size: 2.4rem; margin-bottom: 12px;">A Message Just For You</h2>
+
+      <!-- Message Choice Toggle: Default Poem or Custom Message -->
+      <div class="story-mode-toggle">
+        <button class="toggle-pill active" id="toggle-poem-default">Classic Poem (Default)</button>
+        <button class="toggle-pill" id="toggle-poem-custom">Custom Message</button>
+      </div>
+
+      <!-- Progressive Sentence Box -->
+      <div class="story-line-counter" id="story-line-counter">Message 1 of 48</div>
+      <div class="story-kinetic-prose" id="story-kinetic-prose">
+        Today is...
+      </div>
+
+      <!-- Line by Line Previous / Next Controls & Auto-Play -->
+      <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; justify-content: center;">
+        <button class="btn btn-glass" id="story-nav-prev">‹ Previous</button>
+        <button class="btn btn-gold" id="btn-story-autoplay">⏸️ Auto-Playing</button>
+        <button class="btn btn-primary" id="story-nav-next">Next ›</button>
+      </div>
+
+      <div class="stage-nav-controls" style="border-top: 1px solid var(--glass-border); padding-top: 25px;">
+        <button class="btn btn-glass btn-nav-prev" data-prev-stage="4">‹ Back to Gift</button>
+        <button class="btn btn-gold" data-next-stage="1">🎉 Play Again From Start</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Hogwarts Castle & Black Lake Ambient Layer (Active in Harry Potter Theme) -->
+  <div class="potter-backdrop-system" id="potter-backdrop-system" aria-hidden="true">
+    <div class="potter-castle-photo"></div>
+    <div class="potter-sky-moonlight"></div>
+    <div class="potter-full-moon">
+      <div class="moon-maria maria-1"></div>
+      <div class="moon-maria maria-2"></div>
+      <div class="moon-maria maria-3"></div>
+      <div class="moon-radiance-halo"></div>
+    </div>
+    <div class="potter-mist-layer mist-back"></div>
+    <div class="potter-mist-layer mist-front"></div>
+    <div class="potter-black-lake">
+      <div class="lake-water-surface"></div>
+      <div class="lake-moon-reflection"></div>
+      <div class="lake-ripple ripple-1"></div>
+      <div class="lake-ripple ripple-2"></div>
+      <div class="lake-ripple ripple-3"></div>
+      <div class="lake-ripple ripple-4"></div>
+    </div>
+  </div>
+
+  <!-- Hedwig Owl Flying Stage Transition Overlay -->
+  <div class="hedwig-transition-overlay" id="hedwig-transition-overlay" aria-hidden="true">
+    <div class="hedwig-owl-sprite" id="hedwig-owl-sprite">
+      <div class="owl-wing wing-left"></div>
+      <div class="owl-body">
+        <div class="owl-face">
+          <div class="owl-eye-glow eye-l"></div>
+          <div class="owl-eye-glow eye-r"></div>
+          <div class="owl-beak-gold"></div>
+        </div>
+      </div>
+      <div class="owl-wing wing-right"></div>
+      <div class="owl-letter-scroll">
+        <div class="letter-wax-crest"></div>
+      </div>
+    </div>
+    <div class="owl-sparkle-trail" id="owl-sparkle-trail"></div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div class="cosmic-toast" id="cosmic-toast">✨ Welcome to the celebration!</div>
+
+  <!-- Personalize / Details Modal -->
+  <div class="glass-modal-overlay" id="glass-creator-modal">
+    <div class="glass-modal-window">
+      <div class="modal-title-bar">
+        <h2 class="modal-headline">✨ Personalize Birthday Page</h2>
+        <button class="modal-close-cross" id="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body-scroll">
+        <div class="input-block">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+            <label class="input-label" for="modal-input-name" style="margin-bottom: 0;">Birthday Person's Name</label>
+            <span class="input-counter" id="counter-name">0/4 words • 0/30 chars</span>
+          </div>
+          <input class="input-field" id="modal-input-name" type="text" placeholder="e.g. Amaan Asif Mulani" autocomplete="off" maxlength="30">
+          <div class="input-subhint" id="hint-name-limit">⚡ Maximum Word Limit: 4 words (up to 30 letters)</div>
+        </div>
+
+        <div class="input-block">
+          <label class="input-label" for="modal-input-date">Birth Date (Optional - calculates age & zodiac)</label>
+          <input class="input-field" id="modal-input-date" type="date">
+        </div>
+
+        <!-- Memory Photo Stack (3 to 5 images) -->
+        <div class="input-block">
+          <label class="input-label">📸 Memory Photo Stack (Select 3 to 5 Images)</label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">Tap photos to select/deselect for your 3D flipping polaroid deck:</p>
+          <div class="preset-thumbs-row" id="preset-thumbs-row">
+            <!-- 5 preset thumbnail cards injected dynamically -->
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+            <label class="btn btn-glass" for="modal-photo-upload" style="cursor: pointer; font-size: 0.82rem; padding: 7px 14px;">
+              📁 Upload Custom Photos (Safe Images Only)
+              <input type="file" id="modal-photo-upload" accept="image/jpeg,image/png,image/webp,image/gif" multiple aria-label="Upload custom memory photos" style="display: none;">
+            </label>
+            <button type="button" class="btn btn-glass" id="btn-reset-preset-photos" style="font-size: 0.82rem; padding: 7px 14px;">
+              ↺ Reset to Default 4
+            </button>
+          </div>
+          <div style="margin-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+              <label class="input-label" for="modal-input-caption" style="font-size: 0.82rem; margin-bottom: 0;">Polaroid Caption</label>
+              <span class="input-counter" id="counter-caption">0/50 chars</span>
+            </div>
+            <input class="input-field" id="modal-input-caption" type="text" placeholder="e.g. Best moments with you ❤️" value="Best moments with you ❤️" maxlength="50">
+          </div>
+        </div>
+
+        <!-- 3D Background Theme Option -->
+        <div class="input-block">
+          <label class="input-label">🌌 3D Background Animation Theme</label>
+          <div class="theme-choice-row">
+            <label class="theme-choice-card active" id="theme-card-potter" for="radio-theme-potter">
+              <input type="radio" id="radio-theme-potter" name="modal-bg-theme" value="potter" aria-label="Hogwarts Wizarding World Theme" checked style="display: none;">
+              <div class="theme-choice-icon">⚡🧙‍♂️</div>
+              <div>
+                <div class="theme-choice-title">Hogwarts Wizarding World (Default)</div>
+                <div class="theme-choice-desc">Great Hall Floating Candles, Golden Snitch, Flying Letters & Magic Sparks</div>
+              </div>
+            </label>
+            <label class="theme-choice-card" id="theme-card-festive" for="radio-theme-festive">
+              <input type="radio" id="radio-theme-festive" name="modal-bg-theme" value="festive" aria-label="Festive 3D Balloons Theme" style="display: none;">
+              <div class="theme-choice-icon">🎈🎁</div>
+              <div>
+                <div class="theme-choice-title">Festive 3D Balloons & Confetti</div>
+                <div class="theme-choice-desc">Multi-Directional Balloons, Tumbling Confetti & Floating Gift Boxes</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="input-block">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+            <label class="input-label" for="modal-input-msg" style="margin-bottom: 0;">Custom Wish Message (Optional)</label>
+            <span class="input-counter" id="counter-msg">0/50 words • 0/350 chars</span>
+          </div>
+          <textarea class="input-area" id="modal-input-msg" placeholder="Leave empty to use the classic heartfelt poem, or write your own lines here..." maxlength="350"></textarea>
+          <div class="input-subhint" id="hint-msg-limit">⚡ Word Limit: Maximum 50 words (up to 350 characters)</div>
+        </div>
+      </div>
+
+      <div class="modal-bottom-actions">
+        <button class="btn btn-glass" id="btn-modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="btn-modal-save">💾 Save Changes</button>
+        <button class="btn btn-glass" id="btn-modal-preview">👁️ Preview</button>
+        <button class="btn btn-gold" id="btn-modal-copy-link" title="Creates a link valid for 24 hours">⏳ Copy 24h Link</button>
+        <button class="btn btn-glass" id="btn-modal-whatsapp" style="color: #25d366; border-color: rgba(37,211,102,0.4);" title="Send 24h link on WhatsApp">💬 WhatsApp (24h)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 24-Hour Expiration Notice Overlay -->
+  <div class="glass-modal-overlay" id="expired-link-overlay">
+    <div class="glass-modal-window" style="text-align: center; max-width: 460px;">
+      <div style="font-size: 3.8rem; margin-bottom: 10px;">⏳</div>
+      <h2 class="modal-headline" style="color: #ffd166; margin-bottom: 8px;">Celebration Link Expired</h2>
+      <p style="color: #e2e8f0; font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px;">
+        This special 24-hour birthday link has expired. You can ask your friend for a fresh link, or start a new celebration!
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-gold" id="btn-unlock-replay">✨ Replay Anyway</button>
+        <button class="btn btn-primary" id="btn-create-fresh">🎉 Create Celebration</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modern Interactive Script & 3D WebGL Library -->
+  <script src="three.min.js"></script>
+  <script src="app.js?v=9.6"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="effect.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-58229732-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 </html>
